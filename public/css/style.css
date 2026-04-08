@@ -1,6 +1,14 @@
-/* body {
-    background-color: pink;
-} */
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container */
+.container{
+    flex: 1;   
+}
 
 /* Navbar */
 .navbar{
@@ -49,4 +57,46 @@
     justify-content: center;
     align-items: space-evenly;
     text-align: center;
+}
+
+/* Cards */
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    margin: 10px 0 !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text{
+    font-weight: 400 !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+/* Card-image */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* New page */
+
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
 }
