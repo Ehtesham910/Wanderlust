@@ -7,15 +7,15 @@ const listingSchema = new Schema({
         type: String,
         required: true
     },
-    description : String,
+    description: String,
     image: {
         filename: String,
         url: {
             type: String,
             default: "https://villaplanet.in/wp-content/uploads/2024/01/JPEG39-768x512.jpg",
             set: (v) => v === "" ?
-            "https://villaplanet.in/wp-content/uploads/2024/01/JPEG39-768x512.jpg" 
-            : v,
+                "https://villaplanet.in/wp-content/uploads/2024/01/JPEG39-768x512.jpg"
+                : v,
         }
     },
     price: Number,
@@ -27,6 +27,10 @@ const listingSchema = new Schema({
             ref: "Review",
         },
     ],
+    owner:{
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
 });
 
 // Delete reviews when a listing is deleted
