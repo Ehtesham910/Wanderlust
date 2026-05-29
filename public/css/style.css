@@ -120,3 +120,14 @@ body {
     padding-left:0;
     padding-right:0;
 }
+
+/* map */
+#map{
+    height: 400px;
+    width: 100%;
+    border-radius: 1rem;
+}
+.show-map{
+    width: 50%;
+    margin: auto;
+}
