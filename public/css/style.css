@@ -1,4 +1,4 @@
-body {
+body{
     font-family: "Plus Jakarta Sans", sans-serif !important;
     display: flex;
     flex-direction: column;
@@ -7,48 +7,62 @@ body {
 
 /* Container */
 .container{
-    flex: 1;   
+    flex: 1;
 }
 
 /* Navbar */
 .navbar{
     height: 5rem;
     background-color: white;
+    padding: 0 2rem;
 }
 
 .fa-compass{
-    color:#fe424d;
+    color: #fe424d;
     font-size: 2rem;
 }
 
 .nav-link{
-    color:#222222 !important;
+    color: #222222 !important;
+    font-weight: 500 !important;
+    margin-right: 1rem;
+}
+
+/* Search Navbar */
+.search-inp{
+    border-radius: 25px !important;
+    padding: 0.5rem 3rem !important;
+    width: 20rem;
+    font-size: 0.95rem;
+}
+
+.search-btn{
+    background-color: #fe424d !important;
+    color: white !important;
+    border-radius: 25px !important;
+    border: none !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+    white-space: nowrap;
+
+    padding: 0.5rem 1rem !important;
+}
+
+.search-btn:hover{
+    background-color: #e63946 !important;
+    color: white !important;
+}
+
+.search-btn i{
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 /* Footer */
-.f-info-links a{
-    text-decoration: none;
-    color: #222222;  
-}
-
-.f-info-links a:hover{
-    text-decoration: underline;
-}
-
-.f-info-links, 
-.f-info-socials,
-.f-info-brand{
-    width:100% ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.f-info-socials i {
-    font-size: 1.2rem;
-    margin-right: 2rem;
-}
-
 .f-info{
     height: 8rem;
     background-color: #ebebeb;
@@ -59,7 +73,30 @@ body {
     text-align: center;
 }
 
-/* Cards */
+.f-info-links,
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+/* Listing Cards */
 .listing-card{
     border: none !important;
     margin-bottom: 2rem;
@@ -82,9 +119,10 @@ body {
 
 .listing-link{
     text-decoration: none;
+    color: #222222;
 }
 
-/* Card-image */
+/* Card Hover Effect */
 .card-img-overlay{
     opacity: 0;
 }
@@ -94,14 +132,8 @@ body {
     background-color: white;
 }
 
-/* New page */
-
-.add-btn{
-    background-color: #fe424d !important;
-    border: none !important;
-}
-
-/* Edit Page */
+/* Buttons */
+.add-btn,
 .edit-btn{
     background-color: #fe424d !important;
     border: none !important;
@@ -112,22 +144,64 @@ body {
     height: 30vh !important;
 }
 
+.show-card{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .btns{
     display: flex;
+    gap: 1rem;
 }
 
-.show-card{
-    padding-left:0;
-    padding-right:0;
-}
-
-/* map */
+/* Map */
 #map{
     height: 400px;
     width: 100%;
     border-radius: 1rem;
 }
+
 .show-map{
-    width: 50%;
+    width: 80%;
     margin: auto;
 }
+
+/* Filters */
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter{
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+}
+
+.filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.filter p{
+    font-size: 0.8rem;
+}
+
+/* Tax Toggle */
+.tax-info{
+    display: none;
+}
+
+.tax-toggle{
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+
