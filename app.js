@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV != "production") {
-    require('dotenv').config();  
+    require('dotenv').config();
 }
 
 const express = require("express");
@@ -10,6 +10,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const { MongoStore } = require('connect-mongo');
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -20,8 +21,14 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+console.log("DB URL exists:", !!process.env.ATLASDB_URL);
+
+// const MONGO_URL = "mongodb://localhost:27017/wanderlust";
+
+const dbUrl = process.env.ATLASDB_URL;
+
 async function main() {
-    await mongoose.connect("mongodb://localhost:27017/wanderlust");
+    await mongoose.connect(dbUrl);
 }
 
 main().then(() => {
@@ -29,6 +36,18 @@ main().then(() => {
 }).catch(err => {
     console.log(err);
 })
+
+mongoose.connection.on("connected", () => {
+    console.log("MongoDB Connected");
+});
+
+mongoose.connection.on("error", (err) => {
+    console.log("MongoDB Error:", err);
+});
+
+mongoose.connection.on("disconnected", () => {
+    console.log("MongoDB Disconnected");
+});
 
 // set view engine
 app.set("view engine", "ejs");
@@ -42,7 +61,21 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(cookieParser());
 
+const store = MongoStore.create({
+    mongoUrl : dbUrl,
+    crypto : {
+        secret: "mysupersecretcode",
+    },
+    // Interval (in seconds) between session updates.
+    touchAfter: 24* 3600,
+});
+
+store.on("error", (err)=>{
+    console.log("ERROR in MONGO SESSION STORE", err);
+});
+
 const sessionOptions = {
+    store,
     secret: "mysupersecretcode",
     resave: false,
     saveUninitialized: true,
@@ -53,10 +86,9 @@ const sessionOptions = {
     }
 };
 
-app.get("/", (req, res) => {
-    res.send("Hi, i am root");
-});
-
+// app.get("/", (req, res) => {
+//     res.send("Hi, i am root");
+// });
 
 app.use(session(sessionOptions));
 app.use(flash());
